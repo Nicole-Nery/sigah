@@ -1,6 +1,6 @@
 import streamlit as st
-from auth.funcoes_auth import *
-from db import *
+from auth.funcoes_auth import autenticar_usuario, cadastrar_novo_usuario
+from db import supabase
 
 def mostrar_tela_login_ou_cadastro():
     if "modo" not in st.session_state or st.session_state["modo"] not in ["login", "cadastro"]:
@@ -26,7 +26,7 @@ def tela_login():
 
     st.markdown('<h1 class="login-title">Login</h1>', unsafe_allow_html=True)
 
-    with st.form("login_form", border=False):
+    with st.form("login_form", clear_on_submit=False):
         email = st.text_input("E-mail")
         senha = st.text_input("Senha", type="password")
         entrar = st.form_submit_button("Entrar")
@@ -59,7 +59,7 @@ def tela_cadastro():
 
     st.markdown('<h1 class="login-title">Cadastro de usuário</h1>', unsafe_allow_html=True)
 
-    with st.form("cadastro_form", border=False):
+    with st.form("cadastro_form", clear_on_submit=False):
         nome = st.text_input("Nome Completo")
         email = st.text_input("E-mail")
         senha = st.text_input("Senha", type="password")
@@ -78,9 +78,38 @@ def tela_cadastro():
                 sucesso, mensagem = cadastrar_novo_usuario(supabase, nome, email, senha)
                 if sucesso:
                     st.success(mensagem)
+                    st.session_state["modo"] = "login"
+                    st.rerun()
                 else:
                     st.error(mensagem)
 
     if st.button("← Voltar para o login"):
         st.session_state["modo"] = "login"
         st.rerun()
+
+def main():
+    # Se estiver logado via Streamlit (Microsoft, Google...)
+    if hasattr(st, "user") and st.user.is_logged_in:
+        st.header(f"Bem-vindo, {st.user.name}!")
+        if st.button("Logout"):
+            st.logout()
+            st.rerun()
+    else:
+        st.header("Login Microsoft")
+        # Exibe o botão de login Microsoft (ou outro configurado no Streamlit Cloud)
+        st.login()
+
+        st.markdown("---")
+        st.write("Ou faça login com seu e-mail:")
+
+        # Exibe o login / cadastro customizado
+        if "usuario" in st.session_state:
+            st.header(f"Bem-vindo, {st.session_state['usuario']['nome']}!")
+            if st.button("Sair"):
+                del st.session_state["usuario"]
+                st.rerun()
+        else:
+            mostrar_tela_login_ou_cadastro()
+
+if __name__ == "__main__":
+    main()
