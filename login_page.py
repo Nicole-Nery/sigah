@@ -3,9 +3,9 @@ from auth.funcoes_auth import autenticar_usuario, cadastrar_novo_usuario
 from db import supabase
 from streamlit_msal import Msal
 
-client_id = "316a96b1-ca44-424b-aaba-892e17412440"
-tenant_id = "common"
-authority = f"https://login.microsoftonline.com/{tenant_id}"
+client_id = st.secrets["client_id"]
+# tenant_id = 
+authority = "https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
 
 # Inicializa autenticação MSAL
 auth_data = Msal.initialize(
