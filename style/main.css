@@ -2,8 +2,8 @@
     --verde: #97bf29;
 }
 
-footer {display: none}
-[data-testid="stHeader"] {display: none}
+/*footer {display: none}
+[data-testid="stHeader"] {display: none}*/
 
 .login-title {
     font-size: 4em;
