@@ -51,7 +51,7 @@ def tela_cadastro():
     st.markdown('<h1 class="login-title">Cadastro de usuário</h1>', unsafe_allow_html=True)
 
 
-    with st.form("cadastro_form", clear_on_submit=False):
+    with st.form("cadastro_form", clear_on_submit=False, border=False):
         nome = st.text_input("Nome Completo")
         email = st.text_input("E-mail")
         senha = st.text_input("Senha", type="password")
