@@ -1,6 +1,6 @@
 import streamlit as st
 from auth.funcoes_auth import *
-from login_page import mostrar_tela_login_ou_cadastro
+from login_page import *
 
 # Configurações visuais
 st.set_page_config(
@@ -15,7 +15,7 @@ with open("style/main.css") as f:
 
 # Login obrigatório antes da navegação
 if "usuario" not in st.session_state:
-    mostrar_tela_login_ou_cadastro()
+    login_screen()
     st.stop()
 
 pages = [
