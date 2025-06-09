@@ -30,7 +30,8 @@ def tela_login():
                     st.rerun()
                 else:
                     st.error("E-mail ou senha inválidos.")
-    st.button("Entrar com Microsoft", on_click= st.login())
+    #st.button("Entrar com Microsoft", on_click= st.login())
+    st.button("Entrar com Microsoft")
 
     st.markdown("---")
     if st.button("Não tem conta? Cadastre-se aqui."):
