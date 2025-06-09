@@ -13,11 +13,17 @@ st.set_page_config(
 with open("style/main.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# Login obrigatório antes da navegação
-if "usuario" not in st.session_state:
-    login_screen()
+# Verifica se o usuário está logado via autenticação interna ou Microsoft
+usuario_logado = (
+    "usuario" in st.session_state  # login do app
+    or (hasattr(st, "user") and st.user.is_logged_in)  # login Microsoft
+)
+
+if not usuario_logado:
+    login_screen()  # esta função mostrará os botões de login
     st.stop()
 
+# Navegação entre páginas
 pages = [
     st.Page("Relatorios.py", title="Relatórios", icon=":material/notifications_active:"),
     st.Page("Fornecedores.py", title="Fornecedores", icon=":material/group_add:"),
@@ -28,6 +34,5 @@ pages = [
     st.Page("Sair.py", title="Sair", icon=":material/logout:")
 ]
 
-# Navegação entre páginas (só acessível após login)
 page = st.navigation(pages)
 page.run()
