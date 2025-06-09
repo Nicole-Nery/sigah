@@ -1,6 +1,6 @@
 import streamlit as st
 from auth.funcoes_auth import *
-from login_page import *
+from login_page import login_screen
 
 # Configurações visuais
 st.set_page_config(
