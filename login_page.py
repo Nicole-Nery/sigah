@@ -3,6 +3,18 @@ from auth.funcoes_auth import autenticar_usuario, cadastrar_novo_usuario
 from db import supabase
 
 def tela_login():
+    st.markdown("""
+        <style>
+            .block-container {
+                padding-top: 5vh;
+                max-width: 500px;
+                margin: auto;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<h1 class="login-title">Login</h1>', unsafe_allow_html=True)
+
     with st.form("login_form", clear_on_submit=False, border=False):
         email = st.text_input("E-mail")
         senha = st.text_input("Senha", type="password")
@@ -24,6 +36,19 @@ def tela_login():
         st.rerun()
 
 def tela_cadastro():
+    st.markdown("""
+        <style>
+            .block-container {
+                padding-top: 5vh;
+                max-width: 900px;
+                margin: auto;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<h1 class="login-title">Cadastro de usuário</h1>', unsafe_allow_html=True)
+
+
     with st.form("cadastro_form", clear_on_submit=False):
         nome = st.text_input("Nome Completo")
         email = st.text_input("E-mail")
