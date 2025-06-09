@@ -1,0 +1,127 @@
+:root {
+    --verde: #97bf29;
+}
+
+footer {display: none}
+[data-testid="stHeader"] {display: none}
+
+.login-title {
+    font-size: 4em;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
+.header-title {
+    font-size: 1.5em;
+    font-weight: 800;
+    margin-bottom: 0;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.subsubtitle {
+    font-size: 1em;
+    color: var(--verde);
+    font-weight: 600;
+}
+
+.subsubsubtitle {
+    font-size: 1em;
+    color: var(--verde);
+    font-weight: 400;
+}
+
+.stMainBlockContainer {
+    padding-top: 0%;
+    padding-bottom: 5%;
+}
+
+/* Estilo unificado para botões e page_link */
+.stButton > button,
+.stPageLink a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    font-size: 18px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: var(--verde);
+    color: white !important;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 !important;
+}
+
+/* Garante que texto e ícones fiquem brancos */
+.stPageLink a span,
+.stPageLink a p,
+.stPageLink a svg,
+.stPageLink .stIcon,
+.stPageLink .stIcon svg,
+.stPageLink .stIconMaterial {
+    color: white !important;
+    fill: white !important;
+}
+
+.stPageLink a:hover,
+.stButton > button:hover {
+    background-color: #6f8f17;
+    color: white !important;
+}
+
+.stHorizontalBlock {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+}
+
+.foto-perfil {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #4f4f4f20;
+    box-shadow: 0 0 10px #00000030;
+    margin-bottom: 10px;
+}
+
+.stForm {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0);
+    margin-bottom: 2rem;
+}
+
+div[data-baseweb="tab-panel"] {
+    background-color: #ffffff;
+    margin-top: 2em;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+}
+
+
+div[data-testid="stSidebarNav"] a:hover,
+div[data-testid="stSidebarNav"] a:hover * {
+    background-color: var(--verde) !important; 
+    color: white !important;               
+}
+
+div[data-testid="stSidebarNav"] a[aria-current="page"] {
+    background-color: var(--verde) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    border-radius: 8px;
+}
