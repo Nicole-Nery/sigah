@@ -6,3 +6,4 @@ matplotlib
 bcrypt
 streamlit-auth
 Authlib
+streamlit-msal
