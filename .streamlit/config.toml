@@ -1,0 +1,45 @@
+[server]
+enableStaticServing = true
+
+[[theme.fontFaces]]
+family = "Poppins"
+url = "app/static/Poppins-Regular.ttf"
+style="normal"
+weight="400"
+
+[[theme.fontFaces]]
+family = "Poppins"
+url = "app/static/Poppins-Italic.ttf"
+style="italic"
+weight="400"
+
+[[theme.fontFaces]]
+family = "Poppins"
+url = "app/static/Poppins-Bold.ttf"
+style="normal"
+weight="700"
+
+[[theme.fontFaces]]
+family = "Poppins"
+url = "app/static/Poppins-BoldItalic.ttf"
+style="italic"
+weight="700"
+
+[theme]
+base = "light"
+primaryColor = "#97bf29"
+backgroundColor = "#f0f0f0"
+secondaryBackgroundColor = "#f2f2f2"
+textColor = "#1f144e"
+baseFontSize = 14
+baseRadius = "small"
+font = "Poppins"
+
+[theme.sidebar]
+primaryColor = "#97bf29"
+backgroundColor = "#1f144e"
+secondaryBackgroundColor = "eff3f6"
+textColor = "#f0f0f0"
+baseFontSize = 14
+baseRadius = "small"
+font = "Poppins"
