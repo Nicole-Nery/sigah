@@ -30,7 +30,8 @@ def tela_login():
                     st.rerun()
                 else:
                     st.error("E-mail ou senha inválidos.")
-
+    st.button("Entrar com Microsoft", on_click=st.login)
+    st.markdown("---")
     if st.button("Não tem conta? Cadastre-se aqui."):
         st.session_state["modo"] = "cadastro"
         st.rerun()
@@ -78,13 +79,6 @@ def tela_cadastro():
         st.rerun()
 
 def login_screen():
-    st.header("Este app é privado.")
-    st.subheader("Entre com a sua conta Microsoft.")
-    st.button("Entrar com Microsoft", on_click=st.login)
-
-    st.markdown("---")
-    st.write("Ou entre com seu e-mail:")
-
     if "modo" not in st.session_state:
         st.session_state["modo"] = "login"
 
