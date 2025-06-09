@@ -2,30 +2,7 @@ import streamlit as st
 from auth.funcoes_auth import autenticar_usuario, cadastrar_novo_usuario
 from db import supabase
 
-def mostrar_tela_login_ou_cadastro():
-    if "modo" not in st.session_state or st.session_state["modo"] not in ["login", "cadastro"]:
-        st.session_state["modo"] = "login"
-
-    modo = st.session_state["modo"]
-
-    if modo == "login":
-        tela_login()
-    elif modo == "cadastro":
-        tela_cadastro()
-
 def tela_login():
-    st.markdown("""
-        <style>
-            .block-container {
-                padding-top: 5vh;
-                max-width: 500px;
-                margin: auto;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown('<h1 class="login-title">Login</h1>', unsafe_allow_html=True)
-
     with st.form("login_form", clear_on_submit=False, border=False):
         email = st.text_input("E-mail")
         senha = st.text_input("Senha", type="password")
@@ -47,18 +24,6 @@ def tela_login():
         st.rerun()
 
 def tela_cadastro():
-    st.markdown("""
-        <style>
-            .block-container {
-                padding-top: 5vh;
-                max-width: 900px;
-                margin: auto;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-
-    st.markdown('<h1 class="login-title">Cadastro de usuário</h1>', unsafe_allow_html=True)
-
     with st.form("cadastro_form", clear_on_submit=False):
         nome = st.text_input("Nome Completo")
         email = st.text_input("E-mail")
@@ -69,7 +34,7 @@ def tela_cadastro():
 
         if cadastrar:
             if not nome or not email or not senha or not confirmar_senha:
-                st.warning("Por favor, preencha todos os campos.")
+                st.warning("Preencha todos os campos.")
             elif senha != confirmar_senha:
                 st.error("As senhas não coincidem.")
             elif len(senha) < 6:
@@ -87,29 +52,30 @@ def tela_cadastro():
         st.session_state["modo"] = "login"
         st.rerun()
 
+def login_screen():
+    st.header("Este app é privado.")
+    st.subheader("Entre com a sua conta Microsoft.")
+    st.button("Entrar com Microsoft", on_click=st.login)
+
+    st.markdown("---")
+    st.write("Ou entre com seu e-mail:")
+
+    if "modo" not in st.session_state:
+        st.session_state["modo"] = "login"
+
+    if st.session_state["modo"] == "login":
+        tela_login()
+    elif st.session_state["modo"] == "cadastro":
+        tela_cadastro()
+
 def main():
-    # Se estiver logado via Streamlit (Microsoft, Google...)
     if hasattr(st, "user") and st.user.is_logged_in:
         st.header(f"Bem-vindo, {st.user.name}!")
         if st.button("Logout"):
             st.logout()
             st.rerun()
     else:
-        st.header("Login Microsoft")
-        # Exibe o botão de login Microsoft (ou outro configurado no Streamlit Cloud)
-        st.login()
-
-        st.markdown("---")
-        st.write("Ou faça login com seu e-mail:")
-
-        # Exibe o login / cadastro customizado
-        if "usuario" in st.session_state:
-            st.header(f"Bem-vindo, {st.session_state['usuario']['nome']}!")
-            if st.button("Sair"):
-                del st.session_state["usuario"]
-                st.rerun()
-        else:
-            mostrar_tela_login_ou_cadastro()
+        login_screen()
 
 if __name__ == "__main__":
     main()
