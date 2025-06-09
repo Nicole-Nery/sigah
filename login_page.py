@@ -1,6 +1,30 @@
 import streamlit as st
 from auth.funcoes_auth import autenticar_usuario, cadastrar_novo_usuario
 from db import supabase
+from streamlit_msal import Msal
+
+client_id = "316a96b1-ca44-424b-aaba-892e17412440"
+tenant_id = "common"
+authority = f"https://login.microsoftonline.com/{tenant_id}"
+
+# Inicializa autenticação MSAL
+auth_data = Msal.initialize(
+    client_id=client_id,
+    authority=authority,
+    scopes=[],
+)
+
+def login_microsoft():
+    if auth_data and "account" in auth_data:
+        st.session_state.usuario = {
+            "nome": auth_data["account"]["name"],
+            "email": auth_data["account"]["username"],
+            "id": auth_data["account"]["localAccountId"],
+            "via": "microsoft"
+        }
+        st.rerun()
+    if st.button("Entrar com Microsoft"):
+        Msal.sign_in()
 
 def tela_login():
     st.markdown("""
@@ -27,10 +51,13 @@ def tela_login():
                 usuario_autenticado = autenticar_usuario(email, senha)
                 if usuario_autenticado:
                     st.session_state.usuario = usuario_autenticado
+                    st.session_state.usuario["via"] = "supabase"
                     st.rerun()
                 else:
                     st.error("E-mail ou senha inválidos.")
-    st.button("Entrar com Microsoft", on_click= st.login)
+
+    # Login Microsoft
+    login_microsoft()
 
     st.markdown("---")
     if st.button("Não tem conta? Cadastre-se aqui."):
@@ -49,7 +76,6 @@ def tela_cadastro():
     """, unsafe_allow_html=True)
 
     st.markdown('<h1 class="login-title">Cadastro de usuário</h1>', unsafe_allow_html=True)
-
 
     with st.form("cadastro_form", clear_on_submit=False, border=False):
         nome = st.text_input("Nome Completo")
@@ -89,10 +115,12 @@ def login_screen():
         tela_cadastro()
 
 def main():
-    if hasattr(st, "user") and st.user.is_logged_in:
-        st.header(f"Bem-vindo, {st.user.name}!")
+    if "usuario" in st.session_state:
+        st.header(f"Bem-vindo, {st.session_state.usuario['nome']}!")
         if st.button("Logout"):
-            st.logout()
+            if st.session_state.usuario.get("via") == "microsoft":
+                Msal.sign_out()
+            st.session_state.clear()
             st.rerun()
     else:
         login_screen()
