@@ -4,3 +4,5 @@ pandas
 plotly
 matplotlib
 bcrypt
+streamlit-auth
+Authlib
