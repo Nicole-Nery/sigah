@@ -26,7 +26,7 @@ def tela_login():
 
     st.markdown('<h1 class="login-title">Login</h1>', unsafe_allow_html=True)
 
-    with st.form("login_form", clear_on_submit=False):
+    with st.form("login_form", clear_on_submit=False, border=False):
         email = st.text_input("E-mail")
         senha = st.text_input("Senha", type="password")
         entrar = st.form_submit_button("Entrar")
