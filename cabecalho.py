@@ -8,6 +8,8 @@ def conexao_e_cabecalho():
     with st.sidebar:
         st.logo(image="assets/logo-sigah.png", size='large')
         st.image("assets/logos.png", use_container_width=True)
+        st.write("Sistema Integrado de Gestão de Atas Hospitalares")
+        st.write("Versão 2.0")
     # Aplica o CSS
     with open("style/main.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
