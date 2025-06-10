@@ -14,13 +14,8 @@ def conexao_e_cabecalho():
 
     # Conteúdo do cabeçalho sobre a faixa
     with st.container():
-        col1, col2 = st.columns([8, 1])
+        st.html(f"<h3 class='header-title'>Bem-vindo(a), {usuario['nome']}</h3>")
+        st.html("<div class='subsubsubtitle'>Hospital de Clínicas de Uberlândia (HC-UFU)</div>")
 
-        with col1:
-            st.html(f"<h3 class='header-title'>Bem-vindo(a), {usuario['nome']}</h3>")
-            #st.html("<div class='subsubsubtitle'>Hospital de Clínicas de Uberlândia (HC-UFU)</div>")
-
-        with col2:
-            st.page_link("Perfil.py", label="Perfil", icon=":material/account_circle:")
 
     
