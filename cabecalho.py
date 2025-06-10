@@ -15,7 +15,8 @@ def conexao_e_cabecalho():
     # Conteúdo do cabeçalho sobre a faixa
     with st.container():
         st.html(f"<h3 class='header-title'>Bem-vindo(a), {usuario['nome']}</h3>")
-        st.html("<div class='subsubsubtitle'>Hospital de Clínicas de Uberlândia (HC-UFU)</div>")
+        st.write("Hospital de Clínicas de Uberlândia (HC-UFU)")
+        #st.html("<div class='subsubsubtitle'>Hospital de Clínicas de Uberlândia (HC-UFU)</div>")
 
 
     
