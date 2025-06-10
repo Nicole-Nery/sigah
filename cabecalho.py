@@ -21,7 +21,8 @@ def conexao_e_cabecalho():
             st.html(f"<h3 class='header-title'>Bem-vindo(a), {usuario['nome']}</h3>")
             st.write("Hospital de Clínicas de Uberlândia (HC-UFU)")
         with col2:
-            st.write("SISTEMA INTEGRADO DE GESTÃO DE ATAS HOSPITALARES")
+            st.write("SISTEMA INTEGRADO DE GESTÃO")
+            st.write("DE ATAS HOSPITALARES")
 
 
     
