@@ -40,6 +40,6 @@ primaryColor = "#97bf29"
 backgroundColor = "#1f144e"
 secondaryBackgroundColor = "eff3f6"
 textColor = "#f0f0f0"
-baseFontSize = 14
+baseFontSize = 16
 baseRadius = "small"
 font = "Poppins"
