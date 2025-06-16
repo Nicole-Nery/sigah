@@ -49,12 +49,12 @@ with st.form('editar_info_perfil', border=False):
         if resultado:
             st.success("Perfil atualizado com sucesso!")
 
-with st.form('excluir_conta'):
+with st.form('excluir_conta', border=False):
     st.subheader("Excluir Conta")
 
     with st.expander("Deseja excluir sua conta permanentemente?", icon=":material/delete:"):
         confirmacao = st.text_input("Digite CONFIRMAR para excluir sua conta:")
-        if st.button("Excluir conta", type="primary"):
+        if st.form_submit_button("Excluir conta"):
             if confirmacao == "CONFIRMAR":
                 deletar = deletar_registro("usuarios", usuario_id)
                 if deletar:
