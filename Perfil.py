@@ -50,7 +50,7 @@ with st.form('editar_info_perfil', border=False):
             st.success("Perfil atualizado com sucesso!")
 
 with st.form('excluir_conta', border=False):
-    st.subheader("Excluir Conta")
+    st.html("<div class='subtitle'>Excluir conta</div>")
 
     with st.expander("Deseja excluir sua conta permanentemente?", icon=":material/delete:"):
         confirmacao = st.text_input("Digite CONFIRMAR para excluir sua conta:")
