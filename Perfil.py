@@ -17,7 +17,7 @@ if not usuario_auth:
 email = usuario_auth.get("email")
 
 # Buscar dados do usuário
-usuarios = buscar_registro(nome_tabela="usuarios", ordenar_por="id", colunas=["id", "nome", "email", "senha", "cargo"])
+usuarios = buscar_registro(nome_tabela="usuarios", ordenar_por="id", colunas=["id", "nome", "email", "senha"])
 
 usuario = next((u for u in usuarios if u["email"] == email), None)
 
