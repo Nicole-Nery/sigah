@@ -15,7 +15,7 @@ if not usuario_auth:
     st.stop()
 
 email = usuario_auth.get("email")
-
+'''
 # Buscar dados do usuário
 usuarios = buscar_registro(nome_tabela="usuarios", ordenar_por="id", colunas=["id", "nome", "email", "senha"])
 
@@ -29,7 +29,7 @@ usuario_id = usuario["id"]
 nome_atual = usuario["nome_usuario"]
 cargo = usuario.get("cargo", "Não especificado")
 
-'''
+
 # --- Layout ---
 
 st.subheader("Editar Informações")
