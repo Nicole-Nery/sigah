@@ -22,3 +22,10 @@ email = usuario_auth.get("email")
 usuarios = buscar_registro(nome_tabela="usuarios", ordenar_por="id", colunas=["id", "nome", "email", "senha"])
 
 usuario = next((u for u in usuarios if u["email"] == email), None)
+
+if not usuario:
+    st.error("Usuário não encontrado no banco.")
+    st.stop()
+
+usuario_id = usuario["id"]
+nome_atual = usuario["nome_usuario"]
