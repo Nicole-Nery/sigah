@@ -14,7 +14,7 @@ historico_tabs = st.tabs(["Histórico de Empenhos"])
 with historico_tabs[0]:
     try:
         # Filtrar por categoria
-        categorias = ["Todos", "Equipamentos médicos", "Infraestrutura hospitalar", "Suprimentos"]
+        categorias = ["Equipamentos médicos", "Infraestrutura hospitalar", "Suprimentos"]
         col1, col2, col3 = st.columns([1,1,1])
         with col1:
             categoria_filtro = st.multiselect("Filtrar por Categoria", categorias, key="selecione_categoria_filtro", placeholder="Selecione")
@@ -23,7 +23,7 @@ with historico_tabs[0]:
         atas_data = buscar_registro("atas", "nome", ["id", "nome", "categoria_ata"])
 
         # Filtrar atas pelas categorias selecionadas
-        if not categoria_filtro or "Todos" in categoria_filtro:
+        if not categoria_filtro:
             atas_filtradas = atas_data
         else:
             atas_filtradas = [ata for ata in atas_data if ata["categoria_ata"] in categoria_filtro]   
