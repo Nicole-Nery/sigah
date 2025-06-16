@@ -27,7 +27,7 @@ if not usuario:
 usuario_id = usuario["id"]
 nome_atual = usuario["nome"]
 
-with st.form():
+with st.form('editar_info_perfil'):
     st.html("<div class='subtitle'>Editar Informações</div>")
     novo_nome = st.text_input("Nome", value=nome_atual)
     novo_email = st.text_input("Email", value=email, disabled=True)
