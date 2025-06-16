@@ -29,7 +29,7 @@ usuario_id = usuario["id"]
 nome_atual = usuario["nome_usuario"]
 cargo = usuario.get("cargo", "Não especificado")
 
-
+'''
 # --- Layout ---
 
 st.subheader("Editar Informações")
@@ -68,3 +68,4 @@ with st.expander("🗑️ Deseja excluir sua conta permanentemente?"):
                 st.experimental_rerun()
         else:
             st.error("Confirmação incorreta. Digite exatamente CONFIRMAR para prosseguir.")
+'''
