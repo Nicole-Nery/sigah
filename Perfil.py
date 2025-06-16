@@ -27,7 +27,7 @@ if not usuario:
 usuario_id = usuario["id"]
 nome_atual = usuario["nome"]
 
-with st.form('editar_info_perfil'):
+with st.form('editar_info_perfil', border=False):
     st.html("<div class='subtitle'>Editar Informações</div>")
     novo_nome = st.text_input("Nome", value=nome_atual)
     novo_email = st.text_input("Email", value=email, disabled=True)
@@ -48,3 +48,18 @@ with st.form('editar_info_perfil'):
         resultado = atualizar_registro("usuarios", usuario_id, atualizacoes)
         if resultado:
             st.success("Perfil atualizado com sucesso!")
+
+with st.form('excluir_conta'):
+    st.subheader("Excluir Conta")
+
+    with st.expander("Deseja excluir sua conta permanentemente?", icon=":material/delete:"):
+        confirmacao = st.text_input("Digite CONFIRMAR para excluir sua conta:")
+        if st.button("Excluir conta", type="primary"):
+            if confirmacao == "CONFIRMAR":
+                deletar = deletar_registro("usuarios", usuario_id)
+                if deletar:
+                    st.success("Conta excluída com sucesso.")
+                    st.session_state.clear()
+                    st.rerun()
+            else:
+                st.error("Confirmação incorreta. Digite exatamente CONFIRMAR para prosseguir.")
